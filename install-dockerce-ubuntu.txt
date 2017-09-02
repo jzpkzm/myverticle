@@ -49,4 +49,4 @@ $ sudo apt-get update
  
 4、校验DOCKER CE是否安装成功，运行hello-world镜像：
         $ sudo docker run hello-world
-
+5、update 
