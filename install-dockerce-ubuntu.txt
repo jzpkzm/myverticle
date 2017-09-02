@@ -1,0 +1,52 @@
+官网：https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-docker-ce
+
+注意：最好将系统的下载源修改为国内的，否则可能导致下载docker失败，我这里使用的是阿里云。可以参考这个：http://www.linuxidc.com/Linux/2017-01/139458.htm
+ 
+一、卸载老版本Docker
+         老版本Docker被称为docker或者docker-engine。如果安装了它们，卸载掉，
+命令：$ sudo apt-get remove docker docker-engine docker.io
+ 
+
+二、安装Docker CE(使用仓库方式安装)
+（1） 安装仓库
+1、更新apt包索引：
+        $ sudo apt-get update
+2、为了能够通过源来安装，需要安装一些软件包，如：https
+$ sudo apt-get install \
+             apt-transport-https \
+             ca-certificates \
+            curl \
+software-properties-common
+ 
+ 
+3、安装Docker官方GPG key：
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add –
+ 
+官网配图：
+ 
+
+验证秘钥：9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88
+$ sudo apt-key fingerprint 0EBFCD88
+ 
+
+4、使用下面的命令来安装稳定的镜像源：
+        $ sudo add-apt-repository \
+            "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+            $(lsb_release -cs) \
+            stable"
+（2）安装DOCKER CE
+    1、更新apt包索引：
+$ sudo apt-get update
+   
+2、安装最新版本的DOCKER CE
+        $ sudo apt-get install docker-ce
+ 
+3、在生产环境中，应该安装具体版本的Docker CE避免总是安装最新版本，版本列表：
+        $ apt-cache madison docker-ce
+       
+        选择一个特定的版本进行安装，第二列是版本号：
+        $ sudo apt-get install docker-ce=<VERSION>
+ 
+4、校验DOCKER CE是否安装成功，运行hello-world镜像：
+        $ sudo docker run hello-world
+
